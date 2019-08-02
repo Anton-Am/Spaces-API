@@ -6,6 +6,11 @@ use AntonAm\DigitalOcean\Spaces\EntityInterface;
 use AntonAm\DigitalOcean\Spaces\Manager as SpacesManager;
 use Aws\S3\S3Client;
 
+/**
+ * Class BucketObject
+ *
+ * @package AntonAm\DigitalOcean\Spaces\Entity
+ */
 abstract class BucketObject implements EntityInterface
 {
     /** @var S3Client */
@@ -30,17 +35,25 @@ abstract class BucketObject implements EntityInterface
         return $result->toArray();
     }
 
-    public function create()
+
+    abstract public function create();
+
+
+    public function download($path = null)
     {
+        if (null === $path) {
+            $result = $this->client->getObject([
+                'Bucket' => $this->bucket,
+                'Key'    => $this->object,
+            ]);
 
-    }
+            return $result->toArray()['Body'];
+        }
 
-
-    public function download($path): bool
-    {
         $result = $this->client->getObject([
             'Bucket' => $this->bucket,
             'Key'    => $this->object,
+            'SaveAs' => $path
         ]);
 
         return $result->toArray();

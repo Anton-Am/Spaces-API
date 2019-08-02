@@ -3,6 +3,11 @@
 namespace AntonAm\DigitalOcean\Spaces\Entity;
 
 
+/**
+ * Class File
+ *
+ * @package AntonAm\DigitalOcean\Spaces\Entity
+ */
 class File extends BucketObject
 {
     private $file;

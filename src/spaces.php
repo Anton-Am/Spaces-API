@@ -446,7 +446,7 @@ class SpacesConnect
      * Updates the CORS policy of the Space.
      *
      * @param array $corsRules
-     * @return array|mix$managered
+     * @return array|mixed
      * @throws SpacesAPIException
      */
     public function putCORS($corsRules = [])

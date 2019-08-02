@@ -3,6 +3,7 @@
 namespace AntonAm\DigitalOcean\Spaces;
 
 use AntonAm\DigitalOcean\Spaces\Entity\Bucket;
+use AntonAm\DigitalOcean\Spaces\Entity\Cors;
 use AntonAm\DigitalOcean\Spaces\Entity\Directory;
 use AntonAm\DigitalOcean\Spaces\Entity\File;
 use Aws\S3\S3Client;
@@ -88,5 +89,10 @@ class Manager
     public function file($file): File
     {
         return new File($this, $file);
+    }
+
+    public function cors(): Cors
+    {
+        return new Cors($this);
     }
 }

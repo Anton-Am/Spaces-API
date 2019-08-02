@@ -6,6 +6,11 @@ use AntonAm\DigitalOcean\Spaces\EntityInterface;
 use AntonAm\DigitalOcean\Spaces\Manager as SpacesManager;
 use Aws\S3\S3Client;
 
+/**
+ * Class Bucket
+ *
+ * @package AntonAm\DigitalOcean\Spaces\Entity
+ */
 class Bucket implements EntityInterface
 {
     /** @var S3Client */

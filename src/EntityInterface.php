@@ -6,7 +6,7 @@ interface EntityInterface
 {
     public function create();
 
-    public function download($path): bool;
+    public function download($path);
 
     public function delete(): bool;
 
