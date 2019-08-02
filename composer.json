@@ -1,5 +1,5 @@
 {
-    "name": "sociallydev/spaces-api",
+    "name": "anton-am/spaces-api",
     "description": "An API wrapper for DigitalOcean's Spaces object storage designed for easy use.",
     "type": "library",
     "require": {
@@ -25,7 +25,13 @@
             "role": "Fork author"
         }
     ],
+    "support": {
+        "source": "https://github.com/Anton-Am/Spaces-API",
+        "issues": "https://github.com/Anton-Am/Spaces-API/issues"
+    },
     "autoload": {
-        "files": ["spaces.php"]
+        "psr-4": {
+            "AntonAm\\DigitalOcean\\Spaces": "src/"
+        }
     }
 }

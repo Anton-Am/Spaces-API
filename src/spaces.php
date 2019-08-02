@@ -74,20 +74,16 @@ class SpacesConnect
     /**
      * @param $spaceName
      * @return array|mixed
-     * @throws SpacesAPIException
+     * @throws S3Exception
      */
     public function createSpace($spaceName = null)
     {
         $spaceName = $spaceName ?? $this->space;
-        try {
             $this->setSpace($spaceName);
             $success = $this->client->createBucket(['Bucket' => $spaceName]);
             $this->client->waitUntil('BucketExists', ['Bucket' => $spaceName]);
 
             return $this->objReturn($success->toArray());
-        } catch (Exception $e) {
-            $this->handleAWSException($e);
-        }
     }
 
 
@@ -165,14 +161,6 @@ class SpacesConnect
         } catch (Exception $e) {
             $this->handleAWSException($e);
         }
-    }
-
-    /**
-     * Fetches the current Space's name.
-     */
-    public function getSpaceName()
-    {
-        return $this->objReturn($this->space);
     }
 
 
@@ -458,7 +446,7 @@ class SpacesConnect
      * Updates the CORS policy of the Space.
      *
      * @param array $corsRules
-     * @return array|mixed
+     * @return array|mix$managered
      * @throws SpacesAPIException
      */
     public function putCORS($corsRules = [])
@@ -576,89 +564,5 @@ class SpacesConnect
         $request = $this->client->createPresignedRequest($cmd, $validFor);
 
         return (string)$request->getUri();
-    }
-
-
-    /**
-     * Returns a standardized object
-     *
-     * @param $return
-     * @return array|mixed
-     */
-    private function objReturn($return)
-    {
-        $return = json_decode(json_encode($return), true);
-        $return = $this->AWSTime($return);
-        return $return;
-    }
-
-
-    /**
-     * Converts all AWS time values to unix timestamps.
-     *
-     * @param $object
-     * @return array
-     */
-    private function AWSTime($object)
-    {
-        $timeKeys = ['LastModified', 'CreationDate', 'Expires', 'last-modified', 'date', 'Expiration'];
-        if (is_array($object)) {
-            foreach ($object as $key => $value) {
-
-                if (is_array($object[$key])) {
-                    $object[$key] = $this->AWSTime($object[$key]);
-                } else {
-                    foreach ($timeKeys as $timeKey) {
-                        if (array_key_exists($timeKey, $object) && !empty($object[$timeKey]) && !is_numeric($object[$timeKey])) {
-                            $object[$timeKey] = strtotime($object[$timeKey]);
-                        }
-                    }
-                }
-
-            }
-        }
-        return $object;
-    }
-
-
-    /**
-     * Standardizes AWS errors.
-     *
-     * @param S3Exception|Exception $e
-     * @throws SpacesAPIException
-     */
-    private function handleAWSException($e): void
-    {
-        if (is_a($e, S3Exception::class)) {
-            $error['error'] = [
-                'message'   => $e->getAwsErrorMessage(),
-                'code'      => $e->getAwsErrorCode(),
-                'type'      => $e->getAwsErrorType(),
-                'http_code' => $e->getStatusCode(),
-            ];
-        } else {
-            throw $e;
-        }
-        throw new SpacesAPIException(json_encode($error));
-    }
-
-}
-
-
-/**
- * Class SpacesAPIException
- * Throws error for catching.
- */
-class SpacesAPIException extends \Exception
-{
-    public function __construct($message, $code = 0, Exception $previous = null)
-    {
-        parent::__construct($message, $code, $previous);
-    }
-
-    public function GetError()
-    {
-        $error = json_decode($this->getMessage(), true);
-        return $error['error'];
     }
 }
