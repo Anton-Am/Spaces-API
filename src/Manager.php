@@ -88,11 +88,11 @@ class Manager
 
     public function directory($directory): Directory
     {
-        return new Directory($this, $directory);
+        return new Directory($this, ltrim($directory, '/'));
     }
 
     public function file($file): File
     {
-        return new File($this, $file);
+        return new File($this, trim($file, '/'));
     }
 }

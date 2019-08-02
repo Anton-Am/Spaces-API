@@ -14,7 +14,7 @@ class File extends BucketObject
     private $access = 'private';
     private $mimeType = 'application/octet-stream';
 
-    public function setFile($data): self
+    public function setFileData($data): self
     {
         if (file_exists($data) && is_file($data)) {
             $this->file = file_get_contents($data);

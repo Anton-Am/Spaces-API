@@ -15,7 +15,8 @@
         "codeception/codeception": "~2.5",
         "phpunit/php-code-coverage": "~6.0",
         "codeclimate/php-test-reporter": "0.4.4",
-        "squizlabs/php_codesniffer": "~3.4"
+        "squizlabs/php_codesniffer": "~3.4",
+        "vlucas/phpdotenv": "3.4.0"
     },
     "license": "MIT",
     "authors": [

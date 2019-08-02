@@ -45,7 +45,9 @@ class ObjectCest
      */
     public function fileCreated(UnitTester $I): void
     {
-
+        $file = realpath(__DIR__ . '/../composer.json');
+        $I->uploadFile($file);
+        $I->assertUploadedFileExists($file);
     }
 
     /**
@@ -54,7 +56,6 @@ class ObjectCest
      */
     public function fileTempUrlCreated(UnitTester $I): void
     {
-
     }
 
 
