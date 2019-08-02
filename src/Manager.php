@@ -8,6 +8,11 @@ use AntonAm\DigitalOcean\Spaces\Entity\Directory;
 use AntonAm\DigitalOcean\Spaces\Entity\File;
 use Aws\S3\S3Client;
 
+/**
+ * Class Manager
+ *
+ * @package AntonAm\DigitalOcean\Spaces
+ */
 class Manager
 {
     private $client;
@@ -89,10 +94,5 @@ class Manager
     public function file($file): File
     {
         return new File($this, $file);
-    }
-
-    public function cors(): Cors
-    {
-        return new Cors($this);
     }
 }

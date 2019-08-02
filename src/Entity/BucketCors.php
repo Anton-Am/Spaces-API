@@ -6,11 +6,11 @@ use AntonAm\DigitalOcean\Spaces\Manager as SpacesManager;
 use Aws\S3\S3Client;
 
 /**
- * Class Cors
+ * Class BucketCors
  *
  * @package AntonAm\DigitalOcean\Spaces\Entity
  */
-class Cors
+class BucketCors
 {
     /** @var S3Client */
     private $client;

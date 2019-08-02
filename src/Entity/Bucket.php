@@ -86,4 +86,9 @@ class Bucket implements EntityInterface
         return $files;
     }
 
+    public function cors(): BucketCors
+    {
+        return new BucketCors($this->manager);
+    }
+
 }

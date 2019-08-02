@@ -1,5 +1,5 @@
 {
-    "name": "anton-am/spaces-api",
+    "name": "anton-am/do-spaces-api",
     "description": "An API wrapper for DigitalOcean's Spaces object storage designed for easy use.",
     "type": "library",
     "require": {
@@ -10,6 +10,12 @@
         "guzzlehttp/guzzle": "^6.3",
         "mtdowling/jmespath.php": "^2.4",
         "psr/http-message": "^1.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "~2.5",
+        "phpunit/php-code-coverage": "~6.0",
+        "codeclimate/php-test-reporter": "0.4.4",
+        "squizlabs/php_codesniffer": "~3.4"
     },
     "license": "MIT",
     "authors": [
@@ -31,7 +37,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AntonAm\\DigitalOcean\\Spaces": "src/"
+            "AntonAm\\DigitalOcean\\Spaces\\": "src/"
         }
     }
 }
