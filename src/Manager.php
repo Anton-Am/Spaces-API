@@ -3,7 +3,6 @@
 namespace AntonAm\DigitalOcean\Spaces;
 
 use AntonAm\DigitalOcean\Spaces\Entity\Bucket;
-use AntonAm\DigitalOcean\Spaces\Entity\Cors;
 use AntonAm\DigitalOcean\Spaces\Entity\Directory;
 use AntonAm\DigitalOcean\Spaces\Entity\File;
 use Aws\S3\S3Client;

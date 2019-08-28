@@ -40,9 +40,9 @@ class Bucket implements EntityInterface
         return $success->toArray();
     }
 
-    public function download($path): bool
+    public function download($path): void
     {
-        return !empty($this->client->downloadBucket($this->client, $this->bucket));
+        $this->client->downloadBucket($path, $this->bucket);
     }
 
     public function delete(): bool

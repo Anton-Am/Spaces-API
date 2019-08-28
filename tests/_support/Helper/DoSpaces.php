@@ -38,4 +38,11 @@ class DoSpaces extends Filesystem
 
         $this->assertTrue($this->client->file($filename)->exist());
     }
+
+    public function downloadBucket($dir)
+    {
+        $this->initClient();
+
+        $this->client->bucket()->download($dir);
+    }
 }

@@ -46,7 +46,15 @@ class BucketCest
      */
     public function downloaded(UnitTester $I): void
     {
+        // Upload file
+        $file = realpath(__DIR__ . '/../composer.json');
+        $I->uploadFile($file);
+        $I->assertUploadedFileExists($file);
 
+        // Upload dir
+        $directory = realpath(__DIR__ . '/_output');
+        $I->downloadBucket($directory);
+        $I->assertFileExists($directory . $file);
     }
 
     /**
