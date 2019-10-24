@@ -16,7 +16,7 @@ class File extends BucketObject
 
     public function setFileData($data): self
     {
-        if (is_file($data)) {
+        if (@file_exists($data)) {
             $this->file = file_get_contents($data);
         } else {
             $this->file = $data;
