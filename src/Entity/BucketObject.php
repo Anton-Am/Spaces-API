@@ -114,11 +114,11 @@ abstract class BucketObject implements EntityInterface
 
     public function makePrivate(): bool
     {
-        return !empty($this->putAcl([['ACL' => 'private']]));
+        return !empty($this->putAcl(['ACL' => 'private']));
     }
 
     public function makePublic(): bool
     {
-        return !empty($this->putAcl([['ACL' => 'public-read']]));
+        return !empty($this->putAcl(['ACL' => 'public-read']));
     }
 }
