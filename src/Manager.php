@@ -60,7 +60,7 @@ class Manager
                 'secret' => $secretKey,
             ],
             'bucket_endpoint'   => true,
-            'signature_version' => 'v4-unsigned-body'
+            //'signature_version' => 'v4-unsigned-body'
         ]);
 
         $this->accessKey = $accessKey;
